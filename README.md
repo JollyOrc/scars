@@ -207,7 +207,9 @@ An explanation of a failure stays unverified until a test shows it.
 
 **Visual output at reading size** (SCAR-025)
 A result judged by looking at it is inspected at its printed or reading size,
-with the joins of separately drawn parts zoomed in on.
+with the joins of separately drawn parts zoomed in on. A layout drawn into a
+pane of varying width is checked at several widths, down to the narrowest,
+with its edges compared by program.
 
 **Matches are not instances** (SCAR-026)
 A search result is classified by context before it is counted, offered as a
