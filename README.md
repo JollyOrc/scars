@@ -169,6 +169,7 @@ does not replace asking.
 State the content the output must have (text, fonts, images) in every
 end-to-end criterion and manual check, keep a guard test that shows the blank
 result, and ask testers to report anything odd the list did not mention.
+Content in a container that cannot break is tested with more than it holds.
 
 **Stale screens** (SCAR-016)
 A control must read the state when it is used, not the one captured while it was
@@ -259,6 +260,7 @@ meant to be new is written only to a path checked to be free. After a manual
 check, `git status` comes first; commits stage files by name. The backup
 holds the state to return to: for a manual check, the state as handed over.
 A scripted edit leaves out files that change only with the user's approval.
+A loop of outward steps checks all its inputs before the first call.
 
 **Shared code underdocumented** (SCAR-001)
 A utility's secondary transforms (not just its primary purpose) must be
