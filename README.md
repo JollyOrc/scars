@@ -281,7 +281,9 @@ change the result.
 **Synthetic data only** (SCAR-035)
 Measure on real data, keep only the numbers; build fixtures and story
 examples with invented words of the same shape; no build file points into a
-data folder; a forbidden-word check guards anything published.
+data folder; a forbidden-word check guards anything published, and new
+public text is also grepped for names (views, templates, folders,
+properties) found in the private working copies.
 
 **Licences of what is shipped** (SCAR-036)
 Check a dependency's licence before it is bundled; when one is removed for
