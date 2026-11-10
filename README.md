@@ -182,8 +182,10 @@ data is loaded counts, so the loader announces every load.
 When a defect is found, search for the pattern, list every instance in the
 ticket, state the rule for the whole class in the story, and put the pattern in
 one function with a text check over the file that fails for a new copy. A story
-that adds a way to change a value finds every writer by grepping the value. The
-fix's own story, tests and tickets go through the same check.
+that adds a way to change a value finds every writer by grepping the value. A
+check that only classifies an input reads it through the same function as the
+step that uses it, not through a copy of the syntax. The fix's own story,
+tests and tickets go through the same check.
 
 **Guards that miss their criterion** (SCAR-023)
 A guard checks exactly its criterion, not less and not more: it counts the
