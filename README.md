@@ -225,7 +225,8 @@ criterion or a named change of that user.
 **Test readers are checked too** (SCAR-028)
 When a reader of output returns less than the source holds, the reader is
 checked on a known input first; a reader of a format is tested per syntax rule
-of the format.
+of the format; an instrument inserted into the output (marks, labels) is
+checked against the output without it.
 
 **One file per human step** (SCAR-029)
 What a human runs, answers or approves on its own is a file of its own with an
