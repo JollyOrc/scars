@@ -122,6 +122,15 @@ the restore is wrong, every later mutant tests something else, and the report
   plugin's settings file was empty when it was snapshotted; the check
   reported it "unchanged", and the empty copy would have been the undo.
   An older snapshot (with a content check) was used instead.
+- A formatter or other tool that rewrites source can change a character
+  without changing how the line looks: after an automatic reformat, search the
+  changed files by program for characters that cannot be seen (byte-order
+  mark, zero-width and bidirectional control characters, non-breaking space)
+  and write such a character as a visible escape in a string that the tool
+  leaves alone. Example (2026-11-11, Game Card Creator US-002 #3): Prettier
+  rewrote the escape `\uFEFF` in a regular expression into the literal
+  invisible character; two tests still passed, and only a text check that
+  looked for the escape noticed.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

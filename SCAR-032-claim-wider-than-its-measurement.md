@@ -41,5 +41,14 @@ one path that shows nothing proves nothing about the others.
 - An option is measured across the kinds of input it is offered for (short
   and long, sample and generated), not on the one at hand; otherwise the
   question says which inputs were measured.
+- A number that a story cites is measured with exactly the layout, settings
+  and inputs the story states, and the measurement says which variant it was
+  (a spike that differs from the specified layout is named as such). When the
+  real implementation first disagrees with a cited number, the number is
+  measured again with the story's own layout by an independent run before
+  either the story or the code is changed. Example (2026-11-11, Game Card
+  Creator US-002 #4): the size for a 200-word card (5.75 pt) was measured in
+  a spike with filled tag chips; the story's layout has plain tags and gives
+  6 pt, which an independent spike run and the emitter both showed.
 - Applies next to: compiler and renderer APIs with several entry points,
   limits and counts offered as choices, performance and size findings.
