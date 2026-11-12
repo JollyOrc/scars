@@ -7,7 +7,7 @@
 
 ## What went wrong
 
-Six times a test did not match the criterion it named:
+Seven times a test did not match the criterion it named:
 
 1. A guard over generated output read "the character after the call" with a
    pattern that does not match a line end; it checked 124 of 139 calls and
@@ -26,9 +26,16 @@ Six times a test did not match the criterion it named:
 6. A text check asserted that a call came after another and was not inside an
    `if` block; a mutant that made the call's argument depend on the same
    condition passed it (Vault Compiler US-4.10, #92).
+7. Two tests written for one ticket could not both be true: a text check
+   required the entry point to contain `confirmReplace: confirmReplaceWith(Modal)`,
+   while the behaviour test called the same function with the app as its first
+   argument, which the entry point had no way to supply; and a fake of the
+   host's link lookup matched a link by base name and path but not by file name,
+   as the real one does. Both were found only when the code was written, after
+   the tests had been accepted as complete (Game Card Creator US-008 #14).
 
-Items 1 to 3, 5 and 6 pass when the rule is broken; item 4 fails when nothing
-is wrong. (Items 1 to 4 gathered from SCAR-010, SCAR-017 and SCAR-018 on
+Items 1 to 3, 5 and 6 pass when the rule is broken; items 4 and 7 fail when
+nothing is wrong. (Items 1 to 4 gathered from SCAR-010, SCAR-017 and SCAR-018 on
 2026-10-22, Obsidian2Typst; 5 and 6 added 2026-10-31, Vault Compiler.)
 
 ## Root cause
@@ -157,5 +164,19 @@ more blocks the next correct change.
   starts its script without awaiting it; the test passed under the broken
   rule. Rewritten to return at once and draw later, it failed as on the
   user's desktop.
+- Tests written for one interface are proven against a throwaway reference
+  of that interface before the tickets, **all of them together**, not only the
+  group that is easy to reference: a text check over the entry point, a
+  behaviour test of the function it wires, and the fakes of the host. A text
+  check that pins how a function is called and a test that calls it are read
+  side by side, and the entry point is written on paper (what it passes where)
+  to see that both hold; a fake of a host function lists how the real one
+  finds its target (by path, by name, by base name) and carries each way the
+  tests use. Example (2026-11-12, Game Card Creator US-008): the worker's tests
+  were proven against a reference at G2 and held; the adapters, the wiring
+  checks and their fakes were left to "read at the first green run", and the
+  two slips of item 7 appeared there. The prevention is a reference for the
+  whole set, or, when that is too costly, a written sentence in the ticket
+  naming which tests were not proven and why.
 - Applies next to: text checks over source files, guards over generated
   output, wiring tests, fakes of a framework.
