@@ -54,6 +54,12 @@ indistinguishable from a current one.
   depending on an input the measurement did not have. Example (2026-10-28,
   M15): the warning count was measured without the font catalog and said 148;
   the export lists 149, and four checks had copied the number.
+- Every number, name or order a manual check predicts (a count, a file name, the order of a
+  list of warnings) is read from the rule or measured, never written from memory. Example
+  (2026-11-12, Game Card Creator): M01 step 4 listed the warnings in an order that US-005 AC-8
+  does not give (it is card order), and M05 step 3 expected the file name `Reed Sweep cards`
+  where AC-6 names a single chosen note `Cards`; both were found by reading the author's run
+  against the rule, and both checks were corrected, not the code.
 - Before a manual check that depends on settings, read those settings
   where the check runs and compare them with what the check assumes; read
   them again before every run, because a setting can change between runs.

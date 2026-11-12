@@ -78,6 +78,15 @@ step in the fix asked "where else does this exist?".
   false *Missing heading anchor* in exactly the notes the classifier claimed.
   Both copies now call one `readWrapper`, with a text check that no copy of
   the old pattern is left.
+- An operation that can be started by several input routes (typed, picked in a dialog,
+  pasted, dragged) is a class: the story lists every route and gives the refusal example for
+  each, and the tests and the manual check run the refusal through each route, not only the
+  first. Example (2026-11-12, Game Card Creator US-007, M04): the output folder could be typed
+  or chosen in the system's folder dialog; the refusal of the vault's own folder was tested for
+  the typed route (the message under the field), but the dialog route committed the same value,
+  showed the message and then redrew the page at once, which erased it: the author saw the old
+  value come back with no warning. The route's handling moved into one function
+  (`pickOutputFolder`) with a test per outcome.
 - Applies next to: every defect found in M-checks (stale screens SCAR-016,
   confirmations SCAR-014, Enter key SCAR-013, validation, number formats), and to
   every refactor that copies a block between rows.
