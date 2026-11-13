@@ -45,6 +45,14 @@ structure differently (here: level `L − 1` is no longer the top level when
   webpage-export US-002 M10): the folding step assumed `allowFoldingHeadings` on; the
   author's vault has it off, so the site showed no arrows and AC-8 was
   amended after the run.
+- A rule that reads two settings which bound each other (a largest and a smallest
+  size, a first and a last, a minimum and a maximum) is also specified and
+  tested where the two are **equal**, if the checks allow it. The generated
+  text for a list of one differs from a list of many. Example (2026-11-13, Game
+  Card Creator US-004 #24): the settings allow a largest size equal to the
+  smallest; the sheet wrote the sizes as `(7)`, which Typst reads as the number
+  7, so every card kind failed to compile; no test had ever set both sizes to
+  one value until the creature card's scaling test did.
 - Applies next to: page-number position and format (US-018), heading levels,
   numbering patterns, thresholds such as `cropWarningPercent`, column counts
   and any future per-preset rule.

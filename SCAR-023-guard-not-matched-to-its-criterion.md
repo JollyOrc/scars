@@ -178,5 +178,17 @@ more blocks the next correct change.
   two slips of item 7 appeared there. The prevention is a reference for the
   whole set, or, when that is too costly, a written sentence in the ticket
   naming which tests were not proven and why.
+- The expected list of a test (the warnings, the text, the cards) is written
+  after the example has been run through the existing reader of **every**
+  acceptance criterion it touches, and what else it produces is read. An
+  example that is complete for one AC can trigger another: the expected list
+  then misses a warning the other AC requires, or a rule the test cites
+  (US-002 AC-4) behaves differently from the way the test remembers it.
+  Example (2026-11-13, Game Card Creator US-004, G2): three expectations were
+  wrong: a note without a Behaviour section, written for the text rules, also
+  gave AC-2's missing-section warning; "a code block is left out" contradicted
+  the cited US-002 AC-4 (shown as its plain text lines); a statblock's band
+  was expected to show the card's name when it is the API's text. All three
+  were found when the code ran, not when the tests were proven red.
 - Applies next to: text checks over source files, guards over generated
   output, wiring tests, fakes of a framework.
