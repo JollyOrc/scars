@@ -43,6 +43,13 @@ the restore is wrong, every later mutant tests something else, and the report
 - Back up every file a run may change by its full relative path (mirror the
   tree: `mkdir -p "$S/$(dirname "$f")"; cp "$f" "$S/$f"`), never by its base
   name, and write a checksum list of the originals before the first change.
+  Recurrence (2026-11-12, Obsidian2Typst #166): the backups were named
+  `bak-<basename>`; `entries/processor.ts` and `details/processor.ts`
+  collided, a restore wrote the wrong file back, and the mutants that
+  followed ran on a broken tree. The checksum list at the end showed it; the
+  run was repeated. The run's `run()` helper now does the restore and
+  `shasum -c` of the whole list after every mutant, so a bad restore stops
+  the run at the first mutant, not at the end.
 - Restore from the run's own backup, never with `git checkout`, `git restore`
   or `git stash`: git returns a file to a commit, not to the state the run
   started from, and the uncommitted work under test is lost with the mutant.
