@@ -190,5 +190,14 @@ more blocks the next correct change.
   the cited US-002 AC-4 (shown as its plain text lines); a statblock's band
   was expected to show the card's name when it is the API's text. All three
   were found when the code ran, not when the tests were proven red.
+- A stand-in for a collaborator returns, for every call the code under test
+  makes, what the real one returns for it, not only the part the test is
+  about: when the code reads a second result of the same call (the compiler's
+  `gcc-fit` facts next to its PDF), the stand-in writes it too, or every
+  expectation that says "no warning" fails for a reason that is not the
+  rule. Example (2026-11-16, Game Card Creator US-009, G2): the stand-in
+  compiler of the run tests returned a PDF and no facts; the run then warned
+  `FIT_UNKNOWN` for every card, and ten expectations of "no warnings" were red
+  for that reason. Found when the code ran, the ninth wrong test of that story.
 - Applies next to: text checks over source files, guards over generated
   output, wiring tests, fakes of a framework.

@@ -138,6 +138,19 @@ the restore is wrong, every later mutant tests something else, and the report
   rewrote the escape `\uFEFF` in a regular expression into the literal
   invisible character; two tests still passed, and only a text check that
   looked for the escape noticed.
+- The checksum list is itself checked before it is relied on: its line count
+  equals the count of the files it covers and `shasum -c` reports every line
+  `OK` before the first change. File names with spaces break `xargs`; write
+  the list with null-separated names (`find -print0 | xargs -0`). Example
+  (2026-11-16, Game Card Creator US-009, M07): the first list of the scratch
+  vault was garbled by names with spaces; `shasum -c` reported errors, the list
+  was rebuilt (315 lines, 315 files, all OK) before anything was changed.
+- A difference the run did not cause is reported, not explained away or
+  guessed, and restored only from a byte-identical backup whose checksums equal
+  the list. Example (2026-11-16, same check): after the undo five files of an
+  unrelated plugin folder were missing; the cause stayed unknown, a backup of an
+  earlier check had all five checksums, the folder was restored from it and the
+  whole list then matched.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

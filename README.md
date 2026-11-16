@@ -200,7 +200,7 @@ A guard checks exactly its criterion, not less and not more: it counts the
 places it checked, matches the whole statement, uses inputs the real producer
 gives (every option value the real caller passes; fixtures taken from the
 producer's real output, in its serialised form; a stand-in for every
-collaborator the real caller always injects) and inputs on which the rule
+collaborator the real caller always injects, returning everything the real one returns for each call: a compiler's facts as well as its PDF) and inputs on which the rule
 and its rivals give different output, and is proven by a mutation check; a test that one side wins also
 shows the other side was in effect; before tickets, the tests are searched
 for guards that forbid a call the ticket adds or removes and, by function name, for
@@ -274,6 +274,9 @@ holds the state to return to: for a manual check, the state as handed over.
 A scripted edit leaves out files that change only with the user's approval.
 A snapshot that may be restored as it is gets a content check, not only a
 checksum.
+The checksum list itself is checked before use (line count equals file count,
+all `OK`, names with spaces handled); a difference the run did not cause is
+reported and restored only from a byte-identical backup.
 A loop of outward steps checks all its inputs before the first call.
 
 **Shared code underdocumented** (SCAR-001)
