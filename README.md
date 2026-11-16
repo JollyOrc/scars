@@ -219,6 +219,8 @@ merge order and which definition of a name wins are measured too; a line that
 parses may still have no effect (SCAR-037). Where the tool can produce the
 form itself (autocomplete, export), its own output is the first measurement.
 An explanation of a failure stays unverified until a test shows it.
+The premises that carry a decision are listed too, not only the facts used in
+the examples.
 
 **Visual output at reading size** (SCAR-025)
 A result judged by looking at it is inspected at its printed or reading size,

@@ -89,6 +89,16 @@ more blocks the next correct change.
   (`1.3.2 Magic.md` = `# Magic`), so keeping the heading passed too; 19 of 33
   heading-first notes in the real vault differ. Choose inputs where the
   competing behaviours give different output.
+  Recurrence (2026-11-17, Game Card Creator US-010): the mutation rounds of
+  four tickets found six tests whose inputs could not tell the rule from its
+  rival, each closed by a test: a "sorted" result tested with text whose
+  insertion order was already sorted; a merge of coverage ranges tested only
+  with disjoint ranges (a range inside another one shortened it, unnoticed);
+  an empty list of fonts tested never, only `undefined` (a `fonts` key was sent
+  for none); a worker that fails during a request, never provoked; a runner
+  never given a creature sheet (its extra fonts were not passed on). For each
+  rule, name the input that its nearest wrong version would also pass, and add
+  the input that it would fail.
 - Before tickets are written, search the tests for every new call a ticket
   adds (a write, a delete, a network request) and list each guard test that
   forbids it. Search for the calls a ticket removes as well: a guard can also
