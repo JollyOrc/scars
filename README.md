@@ -166,6 +166,9 @@ every test build its own visible version so a stale build is spotted at once.
 A fixture that names a file uses a name that is unique where it is looked up.
 The settings a check depends on are read before every run, and the tester
 waits for a go between runs into one output folder.
+Each step is walked through against the real application before the handover:
+the control it names exists and what it needs is prepared; "skip it if easier" is
+not a step.
 
 **Interaction rules nobody wrote down** (SCAR-013, SCAR-014)
 Specify how a dialog is operated (Enter confirms, Escape cancels, IME
@@ -270,7 +273,9 @@ the run on a failed check, and count a mutant only on a tree verified before
 and after it. A survivor is a finding about the tests (SCAR-023). A file
 meant to be new is written only to a path checked to be free. After a manual
 check, `git status` comes first; commits stage files by name. The backup
-holds the state to return to: for a manual check, the state as handed over.
+holds the state to return to: for a manual check, the state as handed over. It holds every
+file the checked program writes while it runs (settings and data files, notes it
+creates), not only what the installer writes.
 A scripted edit leaves out files that change only with the user's approval.
 A snapshot that may be restored as it is gets a content check, not only a
 checksum.

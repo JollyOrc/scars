@@ -151,6 +151,17 @@ the restore is wrong, every later mutant tests something else, and the report
   unrelated plugin folder were missing; the cause stayed unknown, a backup of an
   earlier check had all five checksums, the folder was restored from it and the
   whole list then matched.
+- The backup of a manual check holds every file the checked program writes
+  while it runs, not only the files the installer writes: its settings and
+  data files (chosen presets, last folders) and the notes it creates next to
+  the notes it reads. The starting checksum list says which files exist; only
+  a backup says what was in them. Example (2026-11-16, Obsidian2Typst M30):
+  the backup held the installed plugin's three files and the plugin list;
+  the plugin rewrote its own `data.json` when the tester chose presets and
+  exported, and the export wrote a warnings note into the vault. The original
+  `data.json` was recovered only because an earlier check's backup happened
+  to hold the same bytes (found by checksum); otherwise the undo would have
+  been a reconstruction.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

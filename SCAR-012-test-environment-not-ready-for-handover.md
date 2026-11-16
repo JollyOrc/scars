@@ -70,5 +70,16 @@ indistinguishable from a current one.
   including "export only modified files"; three runs wrote 8 of 413 pages,
   and only the last run was still on disk. The settings were restored and
   checked, and the next three runs were copied one by one.
+- Before a manual check is handed over, each step is walked through against
+  the real application, or its code when it cannot be run: where is the
+  control the step names, is it there, and are the files the step needs
+  prepared? A step that names a control that does not exist, or that is
+  unprepared and "may be skipped if easier", is a step that was not checked.
+  Example (2026-11-16, Obsidian2Typst M30, step 7): the step said "in the
+  settings tab set the band's font size through the preset"; the size is a
+  field of the preset note, not a control of the tab, and nothing was
+  prepared. The tester could not run it; the step was rewritten with two
+  prepared presets and run a day later, after a Node rehearsal gave the
+  expected values for both.
 - Applies next to: every manual check (M1, M2, M3, later ones), release
   candidates, builds sent to other testers.
