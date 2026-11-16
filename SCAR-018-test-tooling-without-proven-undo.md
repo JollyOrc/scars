@@ -162,6 +162,11 @@ the restore is wrong, every later mutant tests something else, and the report
   `data.json` was recovered only because an earlier check's backup happened
   to hold the same bytes (found by checksum); otherwise the undo would have
   been a reconstruction.
+- A mutation or backup script runs in a named shell (`bash script.sh`, or a script in a language with real lists)
+  and refuses to start unless its checksum list holds the expected number of files and verifies. Example
+  (2026-11-16, Game Card Creator US-011 #40): a backup loop over `FILES="a b c"` in zsh copied nothing (zsh does
+  not split the word), so the restores after the mutants restored nothing; found when the file count of the list
+  was read.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

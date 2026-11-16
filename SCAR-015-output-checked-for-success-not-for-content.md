@@ -59,5 +59,11 @@ gets.
   the page lost its end, silently, in 3 of 400 generated entries. Every
   example and test had used paragraphs that fit; a letter-by-letter
   comparison of source and PDF in a spike found it.
+- A manual check whose steps write files says, per step, which file it writes and its expected size (or lines),
+  and the developer compares the disk with that list before recording the check as passed. A run reported as
+  passing can still have skipped or repeated a step; the files show it. Example (2026-11-16, Game Card Creator
+  M09 and M10): after both runs were reported as "all tests pass", the disk showed that two steps had left no
+  file (M09) and that a later run had replaced step 11's PDF with one made with the switches off (M10, identified
+  by its bytes against a rehearsal); the author confirmed the missing step afterwards.
 - Applies next to: previews, cover pages, headers and footers, fonts per role,
   anything that is judged by looking at it.

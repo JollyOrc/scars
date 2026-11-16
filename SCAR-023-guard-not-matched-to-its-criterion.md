@@ -209,5 +209,16 @@ more blocks the next correct change.
   compiler of the run tests returned a PDF and no facts; the run then warned
   `FIT_UNKNOWN` for every card, and ten expectations of "no warnings" were red
   for that reason. Found when the code ran, the ninth wrong test of that story.
+- The search before the code for tests that pin a membership the ticket grows also covers object literals typed
+  by the widened interface (a settings object written out by hand) and filters by an id prefix (`id.startsWith`),
+  not only `toEqual` over a function's result. Example (2026-11-16, Game Card Creator US-012): the creature
+  settings gained three keys; six earlier tests were found only when a throwaway reference ran the whole suite:
+  four settings literals with only the headings (one only by the type check) and a filter that took every
+  `creature.` field for a heading.
+- A text guard's pattern is read against what it is meant to catch, and a match outside that (a name in a
+  comment, a constant named like the forbidden literal) is reported with the guard, not silently avoided.
+  Example (2026-11-16, Game Card Creator US-012 #48): the guard "no literal `CREATURE_` warning code outside the
+  code table" matched a doc comment that named the constant `` `CREATURE_EQUAL_PRELUDE` ``; the constants were
+  renamed `EQUAL_CREATURE_*` and the guard's width noted in the ticket.
 - Applies next to: text checks over source files, guards over generated
   output, wiring tests, fakes of a framework.
