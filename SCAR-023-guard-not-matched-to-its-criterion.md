@@ -49,6 +49,10 @@ more blocks the next correct change.
 
 - A guard checks exactly its criterion: not less, not more. Write the
   criterion next to the guard and read both together.
+  Recurrence (2026-11-17, Game Card Creator US-013 #56): a G2 text check pinned
+  *where* the rename handling lives (`followRename` in `main.ts`) instead of the
+  criterion (the saved selection follows renames); it collided with the guard
+  that keeps `main.ts` at most 120 lines and was amended to the criterion.
 - A guard over generated output asserts how many places it checked, against
   an independent count (the number of pieces written, a count from the
   source). A pattern that silently skips some places still passes.
@@ -105,7 +109,11 @@ more blocks the next correct change.
   pin an exception that the change takes away. Example (2026-10-27, Vault
   Compiler T-4.2-B): the ticket said "no guard affected" without a search;
   three write-call guards allowed exactly the five temp-folder writes the
-  ticket removed, and failed on the first run. A guard that is wider than the
+  ticket removed, and failed on the first run. The search also lists the tests
+  that call a function or export the ticket removes or renames: they fail to
+  compile, not on a guard. Example (2026-11-17, Game Card Creator US-013 #55):
+  the ticket removed `resetPage` and listed three tests as "unchanged and
+  green"; all three called it. A guard that is wider than the
   acceptance criterion it names is
   narrowed to that criterion, with the reason, in the ticket.
 - A test that one side wins over another also asserts that the losing side
@@ -174,6 +182,11 @@ more blocks the next correct change.
   starts its script without awaiting it; the test passed under the broken
   rule. Rewritten to return at once and draw later, it failed as on the
   user's desktop.
+  Recurrence (2026-11-17, Game Card Creator US-013, #58): the fake modal of the
+  dialog tests opened by calling `onOpen` only; Obsidian also focuses the first
+  focusable element afterwards, so no test could see that the replace question
+  opened on Replace. The new fake copies the measured behaviour; the test was
+  red on the old code before the fix.
 - Tests written for one interface are proven against a throwaway reference
   of that interface before the tickets, **all of them together**, not only the
   group that is easy to reference: a text check over the entry point, a
@@ -220,5 +233,13 @@ more blocks the next correct change.
   Example (2026-11-16, Game Card Creator US-012 #48): the guard "no literal `CREATURE_` warning code outside the
   code table" matched a doc comment that named the constant `` `CREATURE_EQUAL_PRELUDE` ``; the constants were
   renamed `EQUAL_CREATURE_*` and the guard's width noted in the ticket.
+  Recurrence (2026-11-17, Game Card Creator US-013 #55, #56): a tab dependency named `copy` matched the guard
+  "only the store copies a file", a handler signature `rename(` the guard against Node file writes; both renamed
+  (`toClipboard`, `onRename`), the guards' width noted.
+- A mutation round first proves its test set green on the unmutated code; a file
+  in the set that is red by design (a later ticket's test) makes every mutant
+  count as caught, whatever it does. Example (2026-11-17, Game Card Creator
+  US-013 #51): the first round ran a runner test red until #54 and reported 14 of
+  14; with the set proven green first, one mutant survived and was a real gap.
 - Applies next to: text checks over source files, guards over generated
   output, wiring tests, fakes of a framework.

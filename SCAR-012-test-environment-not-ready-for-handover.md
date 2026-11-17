@@ -81,5 +81,12 @@ indistinguishable from a current one.
   prepared. The tester could not run it; the step was rewritten with two
   prepared presets and run a day later, after a Node rehearsal gave the
   expected values for both.
+  Walking a step against the code includes every refusal on its path: a step
+  that sets a value the code refuses (a check, a range, a commit that keeps the
+  last valid value) cannot reach the state the step expects. Example
+  (2026-11-17, Game Card Creator US-013 M12 step 3): to see the tab open the
+  section with a problem, the step typed a card width of 10; the commit refuses
+  it and keeps 62, so the problem never existed; the step needed a hand-edited
+  settings file instead.
 - Applies next to: every manual check (M1, M2, M3, later ones), release
   candidates, builds sent to other testers.

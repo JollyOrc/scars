@@ -50,5 +50,13 @@ one path that shows nothing proves nothing about the others.
   Creator US-002 #4): the size for a 200-word card (5.75 pt) was measured in
   a spike with filled tag chips; the story's layout has plain tags and gives
   6 pt, which an independent spike run and the emitter both showed.
+- A tester's report is evidence only for what it states. A summary ("passes
+  mostly", "all pass") is not an observation of each step's outcome: the
+  developer does not state an outcome nobody reported (that a key cancelled,
+  that a file was written), but reads it on the disk or asks. Example
+  (2026-11-17, Game Card Creator US-013 M12 step 14): from "passes mostly, but
+  the focus is on Replace" the developer wrote "Enter cancelled the run"; the
+  author had seen Enter replace the cards, which made it a High defect (F1),
+  not a cosmetic one.
 - Applies next to: compiler and renderer APIs with several entry points,
   limits and counts offered as choices, performance and size findings.
