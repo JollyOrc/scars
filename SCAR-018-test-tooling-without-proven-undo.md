@@ -167,6 +167,13 @@ the restore is wrong, every later mutant tests something else, and the report
   (2026-11-16, Game Card Creator US-011 #40): a backup loop over `FILES="a b c"` in zsh copied nothing (zsh does
   not split the word), so the restores after the mutants restored nothing; found when the file count of the list
   was read.
+- For a manual check in a small fixture (a scratch vault of a few hundred
+  MB), the backup is a full copy of the fixture, proven against the checksum
+  list, rather than a list of the files the checked actions write: the undo
+  then does not depend on predicting them. Example (2026-11-18, Obsidian2Typst
+  M33, after M32 missed a warnings note): a full copy of 315 files (271 MB);
+  the run also wrote a note nobody had predicted (`… export warnings export
+  warnings.md`), and the undo held, 315 of 315.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

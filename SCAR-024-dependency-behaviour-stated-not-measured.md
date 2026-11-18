@@ -63,5 +63,13 @@ test; the rest was taken from expectation, not from the tool.
   fonts). It held: without the extra fonts `✓ 😀 漢 ⌘` were the font's empty
   glyph, with them `✓ 😀 ⌘` were drawn. Ask of each decision: what must the
   dependency do for this to be right, and was that measured?
+- A test that compares a dependency's output byte for byte first measures
+  which bytes the dependency takes from the clock, chance or the machine
+  (produce it twice across a second boundary), sets those aside by name, and
+  makes the case that failed by chance happen in every run. Example
+  (2026-11-18, Obsidian2Typst #183): Typst writes the dates, to the second,
+  and a document ID derived from them into every PDF; a "same bytes twice"
+  test failed whenever its two compiles fell on two sides of a second. The
+  test now compiles 1.1 s apart and compares with those seven fields blanked.
 - Applies next to: compiler and renderer behaviour, Obsidian API timing and
   events, file formats, library defaults.

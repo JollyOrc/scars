@@ -58,5 +58,12 @@ one path that shows nothing proves nothing about the others.
   the focus is on Replace" the developer wrote "Enter cancelled the run"; the
   author had seen Enter replace the cards, which made it a High defect (F1),
   not a cosmetic one.
+- A count given to the owner for a decision (how many places, how much
+  work) names the search it was counted with and what that search cannot
+  see; a count from one narrow search is a lower bound, not the inventory.
+  Example (2026-11-18, Obsidian2Typst US-042 T6): "about 68 user-facing
+  literals" came from a grep for a few field names; reading every
+  sentence-like literal found about 220, and the owner's choice had to be
+  asked again.
 - Applies next to: compiler and renderer APIs with several entry points,
   limits and counts offered as choices, performance and size findings.
