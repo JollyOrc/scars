@@ -174,6 +174,25 @@ the restore is wrong, every later mutant tests something else, and the report
   M33, after M32 missed a warnings note): a full copy of 315 files (271 MB);
   the run also wrote a note nobody had predicted (`… export warnings export
   warnings.md`), and the undo held, 315 of 315.
+- A build that deploys into a test vault is itself a writer: the snapshot of
+  that vault is taken before the first build of the check, not after the
+  test build is in place. Example (2026-11-18, Vault Compiler M23): the test
+  build was deployed into the fixture vault before its full copy was made, so
+  the plugin files that had been there had no backup; the undo restored them
+  from the files of the previous GitHub release instead of from the run's own
+  backup.
+- A tool's hooks can run git: before a release step runs a command with
+  lifecycle scripts or hooks (`npm version` runs the package's `version`
+  script), read what they run. A hook that stages or commits is switched off
+  (`--ignore-scripts`) and its other steps are run one by one, so that the
+  git action stays its own command (rule 14). The same goes for git used to
+  tidy up: removing a tracked file is a file removal, not `git rm`. Examples
+  (2026-11-18, Vault Compiler US-7.4): the release checklist's `npm version`
+  runs `node version-bump.mjs && git add manifest.json versions.json` (the
+  webpage-export fork has the same script); found while preparing release
+  0.25.0, before it ran. In the same story a `git rm --cached` ran while a
+  test file was being removed, without the owner's word; it failed on a wrong
+  path and changed nothing.
 - Applies next to: every mutation run, every scripted refactor, probe setups
   that write into the project, install scripts, manual-check fixtures,
   commits and publishes after a manual check, new files written by a tool.

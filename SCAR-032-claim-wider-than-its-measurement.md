@@ -65,5 +65,17 @@ one path that shows nothing proves nothing about the others.
   literals" came from a grep for a few field names; reading every
   sentence-like literal found about 220, and the owner's choice had to be
   asked again.
+- A timing that is cited for a decision runs the code path the product runs:
+  the product's own entry point in its host (the installed plugin's function,
+  called inside the app), with the product's options and callbacks. A timing
+  from a harness that calls an inner function is labelled as such and names
+  every option and callback it leaves out; it does not decide anything until
+  a run of the product's path confirms it. Example (2026-11-18, Vault Compiler
+  US-7.4 VC-5, the day after the point on cited numbers was added): a Node
+  script timed the compile core at 2.4 to 2.7 s, and the owner decided on a
+  progress tab and a worker. The script did not pass the plugin's link
+  resolver, so the core ran its fallback search over all files; in Obsidian
+  the core took 0.41 s and a whole run 1.0 to 1.2 s. Both decisions were put
+  to the owner again and both features were dropped.
 - Applies next to: compiler and renderer APIs with several entry points,
   limits and counts offered as choices, performance and size findings.
